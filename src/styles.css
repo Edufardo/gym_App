@@ -3,5 +3,5 @@
 @import 'tailwindcss/utilities';
 
 * {
-    font-family: Arial;
+    font-family: Helvetica, sans-serif;
 }
