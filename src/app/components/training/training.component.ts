@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BilboDto } from '../constants/BilboDto';
+import { EstimatedDto } from '../constants/EstimatedDto';
 
 @Component({
   selector: 'app-training',
@@ -12,6 +13,11 @@ export class TrainingComponent implements OnInit {
   bilboData: BilboDto;
   estimatedRM: string;
 
+
+  // Data to graphics
+  chartData: EstimatedDto;
+  chartDataArray: EstimatedDto[];
+
   constructor() { 
     this.bilboData = {
       levantamiento : '',
@@ -19,6 +25,8 @@ export class TrainingComponent implements OnInit {
       peso : null,
       reps : null,
     }
+    this.chartDataArray = [];
+    
   }
 
   ngOnInit(): void {
@@ -28,7 +36,14 @@ export class TrainingComponent implements OnInit {
   trainingBilbo(data: BilboDto){
     let res = data.peso * data.reps * 0.03
     let RM:number = res + data.peso
-    this.estimatedRM = RM.toFixed(2)
+    this.estimatedRM = RM.toFixed(2);
+    this.chartData = {
+      date: data.date,
+      RM: parseInt(this.estimatedRM),
+      levantamiento: data.levantamiento
+    }
+    this.chartDataArray.push(this.chartData)
+    console.log(this.chartDataArray);
     console.log(data);
     
   }

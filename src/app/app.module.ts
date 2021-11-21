@@ -7,13 +7,15 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { TrainingComponent } from './components/training/training.component';
 import { FormsModule } from '@angular/forms';
+import { ProgressComponent } from './components/progress/progress.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    TrainingComponent
+    TrainingComponent,
+    ProgressComponent
   ],
   imports: [
     BrowserModule,
