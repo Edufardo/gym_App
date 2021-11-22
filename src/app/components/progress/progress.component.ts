@@ -16,7 +16,12 @@ export class ProgressComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const myChart = new Chart("progressChart", {
+    
+  }
+
+  onChange(value){
+    this.movimiento = value
+    let myChart = new Chart("progressChart", {
       type: 'bar',
       data: {
         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],

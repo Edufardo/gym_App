@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { BilboDto } from '../constants/BilboDto';
 import { EstimatedDto } from '../constants/EstimatedDto';
+import { v4 as uuidv4 } from 'uuid'
+import { TrainingService } from './training.service';
 
 @Component({
   selector: 'app-training',
   templateUrl: './training.component.html',
-  styleUrls: ['./training.component.css']
+  styleUrls: ['./training.component.css'],
+  providers:[TrainingService]
 })
 export class TrainingComponent implements OnInit {
 
@@ -15,21 +18,24 @@ export class TrainingComponent implements OnInit {
 
 
   // Data to graphics
-  chartData: EstimatedDto;
-  chartDataArray: EstimatedDto[];
+  chartData: BilboDto;
+  chartDataArray: BilboDto[];
 
-  constructor() { 
+  constructor( private trainingService:TrainingService ) { 
     this.bilboData = {
+      id: null,
       levantamiento : '',
       date: null,
       peso : null,
       reps : null,
+      RM: null,
     }
     this.chartDataArray = [];
     
   }
 
   ngOnInit(): void {
+    console.log(this.trainingService.getTrainings());
   }
 
 
@@ -39,12 +45,13 @@ export class TrainingComponent implements OnInit {
     this.estimatedRM = RM.toFixed(2);
     this.chartData = {
       date: data.date,
-      RM: parseInt(this.estimatedRM),
-      levantamiento: data.levantamiento
+      RM: parseFloat(this.estimatedRM),
+      levantamiento: data.levantamiento,
+      id: uuidv4(),
+      peso: data.peso,
+      reps: data.reps,
     }
+    this.trainingService.addTraining(this.chartData);
     this.chartDataArray.push(this.chartData)
-    console.log(this.chartDataArray);
-    console.log(data);
-    
   }
 }

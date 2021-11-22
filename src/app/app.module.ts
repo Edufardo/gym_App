@@ -8,6 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { TrainingComponent } from './components/training/training.component';
 import { FormsModule } from '@angular/forms';
 import { ProgressComponent } from './components/progress/progress.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ProgressComponent } from './components/progress/progress.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
